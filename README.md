@@ -7,9 +7,7 @@
 ## Result
 
 ```
-$ yarn babel-node run.js
-yarn run v1.2.1
-$ /Users/mz/sandbox/flowstory/node_modules/.bin/babel-node run.js
+$ babel-node test/test.js
 {
   "a": "<string>",
   "arr": [
@@ -26,7 +24,6 @@ $ /Users/mz/sandbox/flowstory/node_modules/.bin/babel-node run.js
     "y": 42
   }
 }
-Done in 0.69s.
 ```
 
 ## LICENSE

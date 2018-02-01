@@ -1,5 +1,6 @@
 /* @flow */
 const fs = require('fs')
+const path = require('path')
 const { execFileSync } = require('child_process')
 const flow = require('flow-bin')
 const parser = require('flow-parser-bin')
@@ -63,7 +64,8 @@ function astToObject(node) {
   }
 }
 
-const typeExprString = getExportDefaultType('src/components/App.js')
+const targetPath = path.join(__dirname, '../src/components/App.js')
+const typeExprString = getExportDefaultType(targetPath)
 if (typeExprString) {
   const typeExpr = parser.parse('type T = ' + typeExprString).body[0].right
   debug(astToObject(typeExpr.params[0].typeAnnotation))
@@ -72,7 +74,7 @@ if (typeExprString) {
   // SSR
   const React = require('react')
   const ReactDOMServer = require('react-dom/server')
-  const App = require('./src/components/App.js').default
+  const App = require(targetPath).default
   const result = ReactDOMServer.renderToStaticMarkup(<App {...props} />)
   console.log(result)
 }

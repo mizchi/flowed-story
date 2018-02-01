@@ -1,11 +1,10 @@
 /* @flow */
+import React from 'react'
 
 type Point = {
   x: number,
   y: number
 }
-
-type Optional<T> = T | null
 
 type Props = {
   a: string,
@@ -13,17 +12,16 @@ type Props = {
   c: {
     d: { e: any }
   },
-  arr: Array<number>,
-  opt: Optional<string>
+  arr: Array<number>
 }
 
 const props: Props = {
   a: 'foo',
   p: { x: 1, y: 2 },
   c: { d: { e: 3 } },
-  arr: [1],
-  opt: ''
+  arr: [1]
 }
 
-export default props
-export const v = 1
+const App = (props: Props) => <div>{props.a}</div>
+
+export default App
