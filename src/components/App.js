@@ -22,6 +22,6 @@ const props: Props = {
   arr: [1]
 }
 
-const App = (props: Props) => <div>{props.a}</div>
+const App = (props: Props) => <div>Generated: {props.a}</div>
 
 export default App
