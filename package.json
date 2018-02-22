@@ -1,9 +1,9 @@
 {
   "name": "flowed-story",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "lib/index",
   "license": "MIT",
-  "bin": "bin/flowed-story",
+  "bin": "bin/flowed-story.js",
   "scripts": {
     "prepublish": "babel src -d lib",
     "prepare": "babel src -d lib"
@@ -25,8 +25,5 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1"
   },
-  "files": [
-    "lib",
-    "bin"
-  ]
+  "files": ["lib", "bin"]
 }
