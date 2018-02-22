@@ -1,6 +1,6 @@
 {
   "name": "flowed-story",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "lib/index",
   "license": "MIT",
   "bin": "bin/flowed-story.js",
