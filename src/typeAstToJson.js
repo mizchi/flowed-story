@@ -1,15 +1,20 @@
 /* @flow */
-export default function astToObject(node) {
+export default function astToObject(node, nodePath = 'props') {
   switch (node.type) {
     case 'ObjectTypeAnnotation': {
       return node.properties.reduce((acc, property) => {
         // TODO: Check key is optional
-        return { ...acc, [property.key.name]: astToObject(property.value) }
+        const nextPath = nodePath + '.' + property.key.name
+        return {
+          ...acc,
+          [property.key.name]: astToObject(property.value, nextPath)
+        }
       }, {})
     }
     case 'GenericTypeAnnotation': {
       if (node.id.name === 'Array') {
-        return [astToObject(node.typeParameters.params[0])]
+        const nextPath = nodePath + '.*'
+        return [astToObject(node.typeParameters.params[0], nextPath)]
       } else {
         // TODO: Trace type instance
         return null
@@ -19,10 +24,10 @@ export default function astToObject(node) {
       return 42
     }
     case 'StringTypeAnnotation': {
-      return '<string>'
+      return `<string: ${nodePath}>`
     }
     case 'AnyTypeAnnotation': {
-      return '<any>'
+      return `<any: ${nodePath}>`
     }
     default: {
       console.error('missing:', node.type)
