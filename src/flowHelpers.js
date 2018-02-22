@@ -4,6 +4,10 @@ const flow = require('flow-bin')
 const parser = require('flow-parser-bin')
 const { execFileSync } = require('child_process')
 
+export function parse(expr: string) {
+  return parser.parse(expr)
+}
+
 export function getTypeAtPos(fpath: string, line: number, column: number) {
   const ret = execFileSync(flow, [
     'type-at-pos',

@@ -5,7 +5,7 @@ export default function astToObject(node) {
       return node.properties.reduce((acc, property) => {
         // TODO: Check key is optional
         return { ...acc, [property.key.name]: astToObject(property.value) }
-      })
+      }, {})
     }
     case 'GenericTypeAnnotation': {
       if (node.id.name === 'Array') {

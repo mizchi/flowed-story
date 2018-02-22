@@ -3,8 +3,8 @@ import { astToObject, buildTempFile } from './builders'
 import { getTypeAtPos, getExportDefaultType } from './flowHelpers'
 const debug = obj => console.log(JSON.stringify(obj, null, 2))
 
-export function generateTempForFlowAnalysis(targetGlobExpr: string) {
-  return buildTempFile([targetGlobExpr])
+export function generateTempForFlowAnalysis(targetGlobExpr: string[]) {
+  return buildTempFile(targetGlobExpr)
 }
 
 export function generateScenario() {
