@@ -26,5 +26,5 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1"
   },
-  "files": ["lib"]
+  "files": ["lib", "bin"]
 }
