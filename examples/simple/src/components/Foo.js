@@ -1,3 +1,3 @@
 /* @flow */
 import React from 'react'
-export default (props: { x: string }) => <div>Generated: {props.x}</div>
+export default (props: { x: string }) => <div>Foo: {props.x}</div>
