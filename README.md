@@ -1,27 +1,40 @@
-# Flow
+# flowed-story
 
-## Goal
+(Very early stage)
 
-* Generate storybook's story to react component with flowtype
+Generate stories by your react components and flowtype annotation
 
-## Result
+## How to use
 
+```sh
+$ npm install -g flowed-story
+$ mkdirp -p .storybook/.gen
+$ flowed-story 'src/components/**/*.js'
+gen > <project-root>/.storybook/.gen/_tmp.js
+gen > <project-root>/.storybook/.gen/0.stories.js
+gen > <project-root>/.storybook/.gen/1.stories.js
+gen > <project-root>/.storybook/.gen/2.stories.js
 ```
-$ babel-node script/gen.js
-$ storybook
+
+Load these storise from your storybook.
+
+```js
+// .storybook/config.js
+import { configure } from '@storybook/react'
+
+const req = require.context('./.gen', true, /.stories.js$/)
+function loadStories() {
+  req.keys().forEach(filename => req(filename))
+}
+
+configure(loadStories, module)
 ```
 
-Open localhost:6006 and you can see src/components/App.js
+Run it
 
-## TODO
-
-* [ ] Support `export default () => {...}`
-* [ ] Supoprt same file name
-* [ ] Resolve Generics Type Object
-* [ ] Generate dummy function
-* [ ] Generate random properties
-* [ ] Null Object by Reflection
-* [ ] Packaging
+```sh
+$ npm run storybook
+```
 
 ## LICENSE
 
