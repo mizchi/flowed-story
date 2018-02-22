@@ -2,6 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import mkdirp from 'mkdirp'
+import rimraf from 'rimraf'
 import glob from 'glob'
 import flatten from 'lodash.flatten'
 import * as builders from './builders'
@@ -9,6 +10,7 @@ import * as flowHelpers from './flowHelpers'
 import typeAstToJson from './typeAstToJson'
 
 const projectRoot = process.cwd()
+const genDirPath = path.join(projectRoot, '.storybook/.gen')
 
 const targetGlobExpr = path.join(projectRoot, process.argv[2])
 const targetFilePaths = glob.sync(targetGlobExpr)
@@ -16,8 +18,6 @@ const targetFilePaths = glob.sync(targetGlobExpr)
 export function writeTempFile() {
   const tmpForFlow = builders.buildTempFile(targetFilePaths)
 
-  const genDirPath = path.join(projectRoot, '.storybook/.gen')
-  mkdirp.sync(genDirPath)
   const tmpFilePath = path.join(genDirPath, '_tmp.js')
   fs.writeFileSync(tmpFilePath, tmpForFlow)
   console.log('gen >', tmpFilePath.replace(projectRoot, '<project-root>'))
@@ -41,13 +41,18 @@ export function writeTempFile() {
 
     // gen file
     const storyCode = builders.buildStoryCode(info.symbolFor, dummyProps)
+    const base = path
+      .basename(info.symbolFor)
+      .replace(path.extname(info.symbolFor), '')
     const genPath = path.join(
       projectRoot,
-      `.storybook/.gen/${index}.stories.js`
+      `.storybook/.gen/${index}_${base}.stories.js`
     )
     fs.writeFileSync(genPath, storyCode)
     console.log('gen >', genPath.replace(projectRoot, '<project-root>'))
   })
 }
 
+mkdirp.sync(genDirPath)
+rimraf.sync(path.join(process.cwd(), '.storybook/.gen/*.js'))
 writeTempFile()
