@@ -18,9 +18,7 @@ Use cli command to generate story.
 
 ```sh
 $ npm install --save-dev flowed-story flow-bin flow-parser-bin # or yarn
-# Work arround. I will fix later
-$ node node_modules/flowed-story/bin/flowed-story.js 'src/components/*.js'
-# $ npm run flowed-story 'src/components/*.js'
+$ npx flowed-story 'src/components/*.js'
 
 gen > <project-root>/.storybook/.gen/0_Foo.stories.js
 ```
@@ -57,7 +55,6 @@ See `examples/simple`
 * Wrap with props editor
 * Use `export type __flowed_story_types = {...}` alternative
 * Use `export const __flowed_story_props = {...}` alternative
-* bin
 
 ## LICENSE
 
