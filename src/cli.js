@@ -4,7 +4,6 @@ import path from 'path'
 import mkdirp from 'mkdirp'
 import glob from 'glob'
 import flatten from 'lodash.flatten'
-import * as commands from './commands'
 import * as builders from './builders'
 import * as flowHelpers from './flowHelpers'
 import typeAstToJson from './typeAstToJson'
@@ -15,7 +14,7 @@ const targetGlobExpr = path.join(projectRoot, process.argv[2])
 const targetFilePaths = glob.sync(targetGlobExpr)
 
 export function writeTempFile() {
-  const tmpForFlow = commands.generateTempForFlowAnalysis(targetFilePaths)
+  const tmpForFlow = builders.buildTempFile(targetFilePaths)
 
   const genDirPath = path.join(projectRoot, '.storybook/.gen')
   mkdirp.sync(genDirPath)
