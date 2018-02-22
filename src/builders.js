@@ -27,8 +27,8 @@ export function buildTempFile(patternExprs: string[]) {
     '\n/*---*/\n' +
     refs
       .map((r, index) => {
-        const relpath = '../../' + r.fpath.replace(process.cwd(), '')
-        return `${r.ref}${SEP_FOR_TYPE_AND_COMMENT}{"fpath": "${relpath}"}`
+        const relpath = path.join('../../' + r.fpath.replace(process.cwd(), ''))
+        return `${r.ref}${SEP_FOR_TYPE_AND_COMMENT}{"symbolFor": "${relpath}"}`
       })
       .join('\n')
   )

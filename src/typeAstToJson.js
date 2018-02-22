@@ -30,3 +30,5 @@ export default function astToObject(node) {
     }
   }
 }
+
+export const dumpAst = obj => console.log(JSON.stringify(obj, null, 2))
