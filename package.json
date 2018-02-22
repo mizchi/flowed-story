@@ -1,6 +1,6 @@
 {
   "name": "flowed-story",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "main": "lib/index",
   "license": "MIT",
   "bin": "bin/flowed-story.js",
@@ -9,8 +9,6 @@
     "prepare": "babel src -d lib"
   },
   "dependencies": {
-    "flow-bin": "^0.64.0",
-    "flow-parser-bin": "^0.63.1",
     "glob": "^7.1.2",
     "lodash.flatten": "^4.4.0",
     "minimist": "^1.2.0",
@@ -18,12 +16,18 @@
     "rimraf": "^2.6.2"
   },
   "devDependencies": {
+    "flow-bin": "^0.64.0",
+    "flow-parser-bin": "^0.63.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1"
+  },
+  "peerDependencies": {
+    "flow-bin": "*",
+    "flow-parser-bin": "*"
   },
   "files": ["lib", "bin"]
 }
