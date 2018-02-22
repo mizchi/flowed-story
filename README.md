@@ -36,6 +36,10 @@ Run it
 $ npm run storybook
 ```
 
+![](https://i.gyazo.com/0231b742016be760f7c43a91906f8c5e.png)
+
+See `examples/simple`
+
 ## LICENSE
 
 MIT
